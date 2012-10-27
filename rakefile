@@ -1,0 +1,21 @@
+require "rake"
+require "coffee-script"
+
+coffee = FileList["*.coffee"]
+coffee_js = coffee.ext "js"
+
+coffee.zip coffee_js do |cf, js|
+  file js => [cf, "rakefile"] do |t|
+    coffee_source = nil
+    File.open(cf, "r:sjis") do |fin|
+      coffee_source = fin.read
+    end
+    
+    js_source = CoffeeScript.compile coffee_source
+    File.open(js, "w:sjis") do |fout|
+      fout.write js_source
+    end
+  end
+end
+
+task :default => coffee_js

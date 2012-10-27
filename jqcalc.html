@@ -1,0 +1,70 @@
+<!DOCTYPE html> 
+<head> 
+<title>Calc</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+<script type="text/javascript" src='jqcalc.js'></script>
+<style>
+
+body {
+  text-align:center;
+}
+
+</style>
+</head>
+<body>
+
+<div data-role="page">
+  <div data-role="header">
+    <h1>Calc</h1>
+  </div><!-- /header -->
+
+  <div data-role="content" id='content'>
+    <table style='display: inline-block;'>
+      <tr>
+        <td colspan=4>
+          <input type='number' id='buffer' style='mergin-left-right:2em' readonly/>
+        <td><a id='clear' data-role='button'>C</a>
+      </tr>
+      <tr>
+        <td><a data-role='button' class='digit' data-digit=7>7</a></td>
+        <td><a data-role='button' class='digit' data-digit=8>8</a></td>
+        <td><a data-role='button' class='digit' data-digit=9>9</a></td>
+        <td><a data-role='button' class='operator' id='div'>/</a></td>
+        <td><a data-role='button' id='sign'>+/-</a></td>
+      </tr>
+      <tr>
+        <td><a data-role='button' class='digit' data-digit=4>4</a></td>
+        <td><a data-role='button' class='digit' data-digit=5>5</a></td>
+        <td><a data-role='button' class='digit' data-digit=6>6</a></td>
+        <td><a data-role='button' class='operator' id='mul'>*</a></td>
+        <td><a data-role='button' class='operator' id='mod'>%</a></td>
+      </tr>
+      <tr>
+        <td><a data-role='button' class='digit' data-digit=1>1</a></td>
+        <td><a data-role='button' class='digit' data-digit=2>2</a></td>
+        <td><a data-role='button' class='digit' data-digit=3>3</a></td>
+        <td><a data-role='button' class='operator' id='add'>+</a></td>
+        <td rowspan=2>
+          <a data-role='button' id='enter' style='padding-top:2em; padding-bottom:2em'>
+            =
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td colspan=2>
+          <a data-role='button' class='digit' data-digit=0>0</a>
+        </td>
+        <td><a data-role='button' id='dot'>.</a></td>
+        <td><a data-role='button' class='operator' id='sub'>-</a></td>
+      </tr>
+      <tr>
+      </tr>
+    </table>
+  </div><!-- /content -->
+</div><!-- /page -->
+</body>
+</html>
