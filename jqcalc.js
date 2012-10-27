@@ -20,12 +20,10 @@
 
     Buffer.prototype.toggleSign = function() {
       if (this._minus === true) {
-        this._minus = false;
+        return this._minus = false;
       } else {
-        this._minus = true;
+        return this._minus = true;
       }
-      console.log(this._minus);
-      return console.log(this.text());
     };
 
     Buffer.prototype.isEmpty = function() {
@@ -223,7 +221,6 @@
       return model.toggleSign();
     });
     model.addListener(function(model) {
-      console.log(model._leftValue, model.operatorName(), model._rightValue, model._buffer.isEmpty());
       $('.operator').removeClass('ui-btn-active');
       if (model.operatorName() != null) {
         $('#' + model.operatorName()).addClass('ui-btn-active');
