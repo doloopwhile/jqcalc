@@ -15,8 +15,6 @@ class Buffer
       @_minus = false
     else
       @_minus = true
-    console.log @_minus
-    console.log @text()
     
   isEmpty: ->
     not @_dotPos? and not @_minus? and @_digits.length == 0
@@ -160,7 +158,6 @@ $(document).live 'pageinit', (event) =>
     model.toggleSign()
   
   model.addListener (model) =>
-    console.log model._leftValue, model.operatorName(), model._rightValue, model._buffer.isEmpty()
     $('.operator').removeClass 'ui-btn-active'
     if model.operatorName()?
       $('#' + model.operatorName()).addClass('ui-btn-active')
