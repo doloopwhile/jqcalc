@@ -30,8 +30,6 @@
       return !(this._dotPos != null) && !(this._minus != null) && this._digits.length === 0;
     };
 
-    Buffer.prototype._absValue = function() {};
-
     Buffer.prototype.text = function() {
       var chars;
       chars = this._digits.concat();
@@ -40,14 +38,15 @@
         if (this._dotPos === 0) chars.unshift(0);
       }
       if (this._minus === true) chars.unshift('-');
+      console.log(chars.join(''));
       return chars.join('');
     };
 
     Buffer.prototype.value = function() {
-      if (this._digits.length === 0) {
+      if (this.isEmpty()) {
         return 0;
       } else {
-        return parseInt(this.text());
+        return parseFloat(this.text());
       }
     };
 
@@ -100,8 +99,10 @@
 
     Model.prototype.putOperator = function(operator) {
       try {
-        if ((this._leftValue != null) && !(this._buffer.isEmpty() != null)) {
-          return this._leftValue = this._operator.call(this._leftValue, this._buffer.value());
+        if (this._leftValue != null) {
+          if (!this._buffer.isEmpty()) {
+            return this._leftValue = this._operator.call(this._leftValue, this._buffer.value());
+          }
         } else {
           return this._leftValue = this._buffer.value();
         }
@@ -221,6 +222,7 @@
       return model.toggleSign();
     });
     model.addListener(function(model) {
+      console.log(model._leftValue, model.operatorName(), model._rightValue, model._buffer.isEmpty());
       $('.operator').removeClass('ui-btn-active');
       if (model.operatorName() != null) {
         $('#' + model.operatorName()).addClass('ui-btn-active');
