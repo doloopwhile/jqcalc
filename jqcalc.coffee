@@ -100,10 +100,16 @@ class Model
       @emitChange()
   
   clear: ->
-    try
-      if not @_operator?
-        @_leftValue = null
-    finally
+    if not @_operator?
+      @clearAll()
+      return
+    @_buffer = new Buffer
+    @_operator = null
+    @_rightValue = null
+    @emitChange()
+  
+  clearAll: ->
+      @_leftValue = null
       @_buffer = new Buffer
       @_operator = null
       @_rightValue = null
@@ -157,6 +163,9 @@ $(document).live 'pageinit', (event) =>
   
   $('#clear').bind 'tap', (event) ->
     model.clear()
+  
+  $('#clear').bind 'taphold', (event) ->
+    model.clearAll()
   
   $('#sign').bind 'tap', (event) ->
     model.toggleSign()
