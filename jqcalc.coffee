@@ -17,9 +17,11 @@ class Buffer
       @_minus = true
     
   isEmpty: ->
-    not @_dotPos? and not @_minus? and @_digits.length == 0
-  
-  _absValue: ->
+    (
+      not @_dotPos? and
+      not @_minus? and
+      @_digits.length == 0
+    )
   
   text: ->
     chars = @_digits.concat()
@@ -30,13 +32,14 @@ class Buffer
         chars.unshift 0
     if @_minus == true
       chars.unshift '-'
+    console.log chars.join('')
     chars.join ''
   
   value: ->
-    if @_digits.length == 0
+    if @isEmpty()
       0
     else
-      parseInt @text()
+      parseFloat @text()
 
 
 class Model
@@ -68,8 +71,9 @@ class Model
   
   putOperator: (operator) ->
     try
-      if @_leftValue? and not @_buffer.isEmpty()?
-        @_leftValue = @_operator.call @_leftValue, @_buffer.value()
+      if @_leftValue?
+        if not @_buffer.isEmpty()
+          @_leftValue = @_operator.call @_leftValue, @_buffer.value()
       else
         @_leftValue = @_buffer.value()
     finally
@@ -158,6 +162,7 @@ $(document).live 'pageinit', (event) =>
     model.toggleSign()
   
   model.addListener (model) =>
+    console.log model._leftValue, model.operatorName(), model._rightValue, model._buffer.isEmpty()
     $('.operator').removeClass 'ui-btn-active'
     if model.operatorName()?
       $('#' + model.operatorName()).addClass('ui-btn-active')
