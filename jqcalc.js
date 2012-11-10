@@ -132,14 +132,22 @@
     };
 
     Model.prototype.clear = function() {
-      try {
-        if (!(this._operator != null)) return this._leftValue = null;
-      } finally {
-        this._buffer = new Buffer;
-        this._operator = null;
-        this._rightValue = null;
-        this.emitChange();
+      if (!(this._operator != null)) {
+        this.clearAll();
+        return;
       }
+      this._buffer = new Buffer;
+      this._operator = null;
+      this._rightValue = null;
+      return this.emitChange();
+    };
+
+    Model.prototype.clearAll = function() {
+      this._leftValue = null;
+      this._buffer = new Buffer;
+      this._operator = null;
+      this._rightValue = null;
+      return this.emitChange();
     };
 
     Model.prototype.bufferText = function() {
@@ -217,6 +225,9 @@
     });
     $('#clear').bind('tap', function(event) {
       return model.clear();
+    });
+    $('#clear').bind('taphold', function(event) {
+      return model.clearAll();
     });
     $('#sign').bind('tap', function(event) {
       return model.toggleSign();
