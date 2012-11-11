@@ -179,3 +179,6 @@ $(document).live 'pageinit', (event) =>
 
   $('#buffer').val model.bufferText()
 
+
+$(document).live 'pageinit', (event) =>
+  $('*').css {'border-radius': 0}

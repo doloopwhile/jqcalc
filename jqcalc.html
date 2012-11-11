@@ -9,11 +9,6 @@
 <script type="text/javascript" src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
 <script type="text/javascript" src='jqcalc.js'></script>
 <style>
-
-body {
-  text-align:center;
-}
-
 a {
   user-select: none;
   -moz-user-select: none;
@@ -21,11 +16,30 @@ a {
   -webkit-user-select: none;
 }
 
+a.ui-btn {
+  margin: 0;
+}
+
+#enter .ui-btn-inner {
+ padding-top:2em;
+ padding-bottom:2em;
+}
+
+td {
+  padding: 0;
+}
+
+input.ui-input-text {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 8px;
+  padding-right: 21px;
+}
 </style>
 </head>
 <body>
 
-<div data-role="page">
+<div data-role="page" data-theme='a'>
   <div data-role="header">
     <h1>Calc</h1>
   </div><!-- /header -->
@@ -34,7 +48,7 @@ a {
     <table style='width:100%'>
       <tr>
         <td colspan=4>
-          <input type='number' id='buffer' style='mergin-left-right:2em' readonly/>
+          <input type='number' id='buffer' readonly/>
         <td><a id='clear' data-role='button'>C</a>
       </tr>
       <tr>
@@ -57,7 +71,7 @@ a {
         <td><a data-role='button' class='digit' data-digit=3>3</a></td>
         <td><a data-role='button' class='operator' id='add'>+</a></td>
         <td rowspan=2>
-          <a data-role='button' id='enter' style='padding-top:2em; padding-bottom:2em'>
+          <a data-role='button' id='enter'>
             =
           </a>
         </td>
