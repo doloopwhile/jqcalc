@@ -11,6 +11,7 @@
     }
 
     Buffer.prototype.putDot = function() {
+      if (this._digits.length === 0) this._digits.push(0);
       return this._dotPos = this._digits.length;
     };
 
@@ -32,13 +33,10 @@
 
     Buffer.prototype.text = function() {
       var chars;
-      chars = this._digits.concat();
-      if (this._dotPos != null) {
-        chars.splice(this._dotPos, 0, '.');
-        if (this._dotPos === 0) chars.unshift(0);
-      }
+      if (this.isEmpty()) return '';
+      chars = [].concat(this._digits);
+      if (this._dotPos != null) chars.splice(this._dotPos, 0, '.');
       if (this._minus === true) chars.unshift('-');
-      console.log(chars.join(''));
       return chars.join('');
     };
 
@@ -233,7 +231,6 @@
       return model.toggleSign();
     });
     model.addListener(function(model) {
-      console.log(model._leftValue, model.operatorName(), model._rightValue, model._buffer.isEmpty());
       $('.operator').removeClass('ui-btn-active');
       if (model.operatorName() != null) {
         $('#' + model.operatorName()).addClass('ui-btn-active');
@@ -241,6 +238,12 @@
       return $('#buffer').val(model.bufferText());
     });
     return $('#buffer').val(model.bufferText());
+  });
+
+  $(document).live('pageinit', function(event) {
+    return $('*').css({
+      'border-radius': 0
+    });
   });
 
 }).call(this);
