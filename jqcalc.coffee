@@ -5,6 +5,8 @@ class Buffer
     @_minus = null
     
   putDot: ->
+    if @_digits.length == 0
+      @_digits.push 0
     @_dotPos = @_digits.length
   
   putDigit: (n) ->
@@ -15,7 +17,7 @@ class Buffer
       @_minus = false
     else
       @_minus = true
-    
+  
   isEmpty: ->
     (
       not @_dotPos? and
@@ -24,15 +26,16 @@ class Buffer
     )
   
   text: ->
-    chars = @_digits.concat()
+    if @isEmpty()
+      return ''
+    
+    chars = [].concat(@_digits)
     
     if @_dotPos?
       chars.splice @_dotPos, 0, '.'
-      if @_dotPos == 0
-        chars.unshift 0
+    
     if @_minus == true
       chars.unshift '-'
-    console.log chars.join('')
     chars.join ''
   
   value: ->
@@ -171,7 +174,7 @@ $(document).live 'pageinit', (event) =>
     model.toggleSign()
   
   model.addListener (model) =>
-    console.log model._leftValue, model.operatorName(), model._rightValue, model._buffer.isEmpty()
+    #console.log model._leftValue, model.operatorName(), model._rightValue, model._buffer.isEmpty()
     $('.operator').removeClass 'ui-btn-active'
     if model.operatorName()?
       $('#' + model.operatorName()).addClass('ui-btn-active')
