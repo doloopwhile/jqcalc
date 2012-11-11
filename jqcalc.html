@@ -11,18 +11,10 @@
 <style>
 a {
   user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
 }
 
 a.ui-btn {
   margin: 0;
-}
-
-#enter .ui-btn-inner {
- padding-top:2em;
- padding-bottom:2em;
 }
 
 td {
@@ -48,7 +40,7 @@ input.ui-input-text {
   <div data-role="content" id='content'>
     <table style='width:100%'>
       <tr>
-        <td colspan=4>
+        <td colspan=3>
           <input type='number' id='buffer' readonly/>
         <td><a id='clear' data-role='button'>C</a>
       </tr>
@@ -57,34 +49,29 @@ input.ui-input-text {
         <td><a data-role='button' class='digit' data-digit=8>8</a></td>
         <td><a data-role='button' class='digit' data-digit=9>9</a></td>
         <td><a data-role='button' class='operator' id='div'>/</a></td>
-        <td><a data-role='button' id='sign'>+/-</a></td>
       </tr>
       <tr>
         <td><a data-role='button' class='digit' data-digit=4>4</a></td>
         <td><a data-role='button' class='digit' data-digit=5>5</a></td>
         <td><a data-role='button' class='digit' data-digit=6>6</a></td>
         <td><a data-role='button' class='operator' id='mul'>*</a></td>
-        <td><a data-role='button' class='operator' id='mod'>%</a></td>
       </tr>
       <tr>
         <td><a data-role='button' class='digit' data-digit=1>1</a></td>
         <td><a data-role='button' class='digit' data-digit=2>2</a></td>
         <td><a data-role='button' class='digit' data-digit=3>3</a></td>
-        <td><a data-role='button' class='operator' id='add'>+</a></td>
-        <td rowspan=2>
-          <a data-role='button' id='enter'>
-            =
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td colspan=2>
-          <a data-role='button' class='digit' data-digit=0>0</a>
-        </td>
-        <td><a data-role='button' id='dot'>.</a></td>
         <td><a data-role='button' class='operator' id='sub'>-</a></td>
       </tr>
       <tr>
+        <td><a data-role='button' id='sign'>+/-</a></td>
+        <td><a data-role='button' class='digit' data-digit=0>0</a></td>
+        <td><a data-role='button' id='dot'>.</a></td>
+        <td><a data-role='button' class='operator' id='add'>+</a></td>
+      </tr>
+      <tr>
+        <td colspan=4>
+          <a data-role='button' id='enter'>=</a>
+        </td>
       </tr>
     </table>
   </div><!-- /content -->
