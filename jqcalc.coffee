@@ -184,4 +184,4 @@ $(document).live 'pageinit', (event) =>
 
 
 $(document).live 'pageinit', (event) =>
-  $('*').css {'border-radius': 0}
+  $('*').css {'border-radius': 0, 'font-size': 'x-large'}
